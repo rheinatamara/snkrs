@@ -1,0 +1,25 @@
+[   
+    {
+        "id" : 1,
+        "name": "Nike Dunk Low Retro",
+        "brandId" : 1,
+        "description" : "From the school-spirited College Colors Program to the vibrant Nike CO.JP collection, Nike Dunks have seen many colorways since the design’s inception in 1985",
+        "sizeAvailable" :  [
+            {
+                "type": "UK",
+                "size": [4.5,5.5,6.5,7.5,8.5,9.5,10.5,11.5,12.5,13.5,14.5,15.5]
+            },
+            {
+                "type": "US",
+                "size": [5,6,7,8,9,10,11,12,13,14,15,17]
+            },
+            {
+                "type": "EU",
+                "size": [36,37,38,39,40,41,42,43,44,45,46,47]
+            }
+        ],
+        "price": 143,
+        "mainImage" : "file:///Users/test/Downloads/image-removebg-preview.png"
+        
+    }
+]
