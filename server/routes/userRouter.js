@@ -8,5 +8,4 @@ router.post("/login", UserController.loginAdmin)
 // Customer
 router.post('/customer/register', UserController.registerCustomer)
 router.post('/customer/login', UserController.loginCustomer)
-router.get('/customer/product', ProductController.findAll)
 module.exports = router;

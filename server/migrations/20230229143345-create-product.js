@@ -27,7 +27,24 @@ module.exports = {
       brandId: {
         required: true,
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: "Brands",
+          key: "id",
+        },
+        onUpdate: "cascade",
+        onDelete: "cascade",
+      },
+      categoryId: {
+        required: true,
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: {
+          model: "Categories",
+          key: "id",
+        },
+        onUpdate: "cascade",
+        onDelete: "cascade",
       },
       gender: {
         required: true,
@@ -47,7 +64,6 @@ module.exports = {
         },
         onUpdate: "cascade",
         onDelete: "cascade",
-        type: Sequelize.INTEGER,
       },
       isFeatured: {
         required: true,
