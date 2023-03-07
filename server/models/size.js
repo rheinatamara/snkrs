@@ -4,13 +4,9 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Size extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
-      // define association here
+      Size.belongsTo(models.Size, {foreignKey:"productId"})
+
     }
   }
   Size.init({
@@ -23,10 +19,12 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
     },
-    size: { 
-      type: DataTypes.ARRAY(DataTypes.STRING),
-        required: true,   
+    sizeAvailable: { 
+      type: DataTypes.ARRAY(DataTypes.INTEGER),
+      required: true,   
     },
+    productId: DataTypes.INTEGER,
+
   }, {
     sequelize,
     modelName: 'Size',

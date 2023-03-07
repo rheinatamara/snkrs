@@ -14,6 +14,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
+      
       description: {
         required: true,
         allowNull: false,
@@ -46,14 +47,16 @@ module.exports = {
         onUpdate: "cascade",
         onDelete: "cascade",
       },
-      gender: {
+      genderId: {
         required: true,
         allowNull: false,
-        type: Sequelize.STRING
-      },
-      sizeAvailable: {
-        required: true,
-        type: Sequelize.ARRAY(Sequelize.STRING)
+        type: Sequelize.INTEGER,
+        references: {
+          model: "Genders",
+          key: "id",
+        },
+        onUpdate: "cascade",
+        onDelete: "cascade",
       },
       authorId: {
         allowNull: false,

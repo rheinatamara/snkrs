@@ -15,6 +15,7 @@ const authentication = async (req, res, next) => {
         email: found.email,
         role: found.role,
       };
+      console.log(req.user)
       next();
     } else {
       let code = error.code || 500;
@@ -33,6 +34,7 @@ const authentication = async (req, res, next) => {
       message = "Authentication failed";
     }
     res.status(code).json({ message });
+    console.log(error)
   }
 };
 module.exports = authentication;

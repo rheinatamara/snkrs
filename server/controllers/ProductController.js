@@ -1,21 +1,22 @@
 
-const { Product, Brand, Image,Category,sequelize } = require("../models");
+const { Product, Brand, Image,Category, Size, sequelize } = require("../models");
 
 class ProductController {
-    static async findAll(req,res,){
+    static async findAll(req,res){
         try {
             const data = await Product.findAll({
-                include: [Brand, Image],
+                include: [Brand, Image,Category],
                 order: [["id", "ASC"]],
               });
               res.status(200).json(data);
             
         } catch (error) {
             res.status(500).json({ message: "Internal server error" });
+            console.log(error)
 
         }
     }
-    static async getById(req,res,){
+    static async getById(req,res){
         try {
             const id = +req.params.id;
             const data = await Product.findByPk(id, {
@@ -33,7 +34,7 @@ class ProductController {
             console.log(err)
           }
     }
-    static async getBrands(req,res,){
+    static async getBrands(req,res){
         try {
             const data = await Brands.findAll();
             res.status(200).json(data);
@@ -42,7 +43,7 @@ class ProductController {
           }
 
     }
-    static async getCategories(req,res,) {
+    static async getCategories(req,res) {
         try {
             const data = await Category.findAll();
             res.status(200).json(data);
@@ -50,10 +51,10 @@ class ProductController {
             res.status(500).json({ message: "Internal server error" });
           }
     }
-    static async addProduct(req,res,){
+    static async addProducts(req,res,){
       const t = await sequelize.transaction();
       try {
-        const { name, slug, description, price, mainImg, categoryId, imgUrl } =
+        const { name, description, price, mainImg, categoryId, imgUrl } =
           req.body;
         const result = await Product.create(
           {
@@ -64,8 +65,8 @@ class ProductController {
             authorId: req.user.id,
             categoryId,
             gender,
-            sizeAvailable,
-            isFeatured
+            isFeatured,
+            mainImg
           },
   
           { transaction: t }
@@ -96,6 +97,13 @@ class ProductController {
         console.log(error);
       }
         
+    }
+    static async addStocks (req,res){
+      try {
+        
+      } catch (error) {
+        
+      }
     }
 }
 module.exports = ProductController;

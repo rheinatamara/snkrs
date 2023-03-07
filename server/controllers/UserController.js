@@ -58,6 +58,7 @@ class UserController {
     
     } catch (error) {
       res.status(500).json({ message: "Internal server error" });
+      console.log(error)
     }
   }
   static async registerCustomer(req,res,next){
@@ -113,6 +114,7 @@ class UserController {
       }
     } catch (error) {
       res.status(500).json({ message: "Internal server error" });
+      console.log(error)
 
     }
   }

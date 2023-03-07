@@ -4,19 +4,14 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Product extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
-      // define association here
       Product.belongsTo(models.Brand,{foreignKey: "brandId"});
-      Product.belongsTo(models.Brand,{foreignKey: "categoryId"});
+      Product.belongsTo(models.Category,{foreignKey: "categoryId"});
       Product.hasMany(models.Image, {foreignKey: "productId"});
       Product.belongsTo(models.User, { foreignKey: "authorId" });
       Product.hasMany(models.Bag, {foreignKey: "productId"})
-
+      Product.hasOne(models.Size, {foreignKey:"productId"})
+      Product.belongsTo(models.Gender, {foreignKey: "genderId"})
     }
   }
   Product.init({
@@ -50,23 +45,7 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
     brandId: DataTypes.INTEGER,
-    gender: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notEmpty: {
-          args: true,
-          msg: "Gender is required",
-        },
-        notNull: true,
-      },
-    },
-    sizeAvailable:{ 
-      type: DataTypes.ARRAY(DataTypes.STRING),
-        required: true,
-    
-    
-    },
+    genderId:  DataTypes.INTEGER,
     isFeatured: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
