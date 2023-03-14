@@ -4,6 +4,7 @@ const { Product, Brand, Image,Category, Size, sequelize } = require("../models")
 class ProductController {
     static async findAll(req,res){
         try {
+          console.log("masuk")
             const data = await Product.findAll({
                 include: [Brand, Image,Category],
                 order: [["id", "ASC"]],
@@ -58,13 +59,13 @@ class ProductController {
           req.body;
         const result = await Product.create(
           {
-            name,
+            name ,
             description,
             price,
             brandId,
             authorId: req.user.id,
             categoryId,
-            gender,
+            genderId,
             isFeatured,
             mainImg
           },

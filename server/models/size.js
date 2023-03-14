@@ -6,6 +6,7 @@ module.exports = (sequelize, DataTypes) => {
   class Size extends Model {
     static associate(models) {
       Size.belongsTo(models.Size, {foreignKey:"productId"})
+      Size.belongsTo(models.Size, {foreignKey:"productColorId"})
 
     }
   }
@@ -24,6 +25,7 @@ module.exports = (sequelize, DataTypes) => {
       required: true,   
     },
     productId: DataTypes.INTEGER,
+    productColorId: DataTypes.INTEGER,
 
   }, {
     sequelize,

@@ -6,6 +6,7 @@ module.exports = (sequelize, DataTypes) => {
   class Brand extends Model {
     static associate(models) {
       Brand.hasMany(models.Product,{foreignKey: "brandId"})
+      Brand.hasMany(models.ProductColor,{foreignKey: "brandId"})
     }
   }
   Brand.init({

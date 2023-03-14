@@ -18,6 +18,15 @@ module.exports = {
         onUpdate: "cascade",
         onDelete: "cascade",
       },
+      productColorId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: "ProductColors",
+          key: "id",
+        },
+        onUpdate: "cascade",
+        onDelete: "cascade",
+      },
       imgUrl: {
         type: Sequelize.STRING
       },

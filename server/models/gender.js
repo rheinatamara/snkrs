@@ -7,6 +7,7 @@ module.exports = (sequelize, DataTypes) => {
 
     static associate(models) {
       Gender.hasMany(models.Product, {foreignKey: "genderId"})
+      Gender.hasMany(models.ProductColor, {foreignKey: "genderId"})
     }
   }
   Gender.init({
