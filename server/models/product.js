@@ -25,6 +25,24 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
     },
+    color: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: {
+          msg: "Color is required",
+        },
+      },
+    },
+    hexCode: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: {
+          msg: "hexCode is required",
+        },
+      },
+    },
     description: {
       type: DataTypes.TEXT,
       allowNull: false,

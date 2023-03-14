@@ -14,7 +14,16 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
-      
+      color: {
+        required: true,
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+      hexCode: {
+        type: Sequelize.STRING,
+        required: true,
+        allowNull: false,
+      },  
       description: {
         required: true,
         allowNull: false,

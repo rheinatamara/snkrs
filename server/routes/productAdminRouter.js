@@ -13,5 +13,10 @@ authorization,
 uploadFiles,
 imageKit,
 ProductController.addProducts)
+router.post('/productsColor',
+authorization,
+uploadFiles,
+imageKit,
+ProductController.addProductsColor)
 router.post('/stocks', authorization, ProductController.addStocks)
 module.exports = router;

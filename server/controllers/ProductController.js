@@ -1,12 +1,12 @@
 
-const { Product, Brand, Image,Category, Size, sequelize } = require("../models");
+const { Product, Brand, Gender,Image,Category, Size,ProductColor, sequelize } = require("../models");
 
 class ProductController {
     static async findAll(req,res){
         try {
           console.log("masuk")
             const data = await Product.findAll({
-                include: [Brand, Image,Category],
+                include: [Brand, Image,Category,Gender,ProductColor],
                 order: [["id", "ASC"]],
               });
               res.status(200).json(data);
@@ -55,19 +55,21 @@ class ProductController {
     static async addProducts(req,res,){
       const t = await sequelize.transaction();
       try {
-        const { name, description, price, mainImg, categoryId, imgUrl } =
+        const { name, description, price, mainImg, categoryId, imgUrl,color,hexCode } =
           req.body;
         const result = await Product.create(
           {
-            name ,
-            description,
-            price,
-            brandId,
+            name : "1234",
+            description:"1234",
+            price:123,
+            brandId:1,
             authorId: req.user.id,
-            categoryId,
-            genderId,
-            isFeatured,
-            mainImg
+            categoryId:1,
+            genderId:1,
+            isFeatured:false,
+            mainImg,
+            color:"red",
+            hexCode: "#0001",
           },
   
           { transaction: t }
@@ -98,6 +100,56 @@ class ProductController {
         console.log(error);
       }
         
+    }
+    static async addProductsColor(req,res){
+      const t = await sequelize.transaction();
+      try {
+        const { name, description, price, mainImg, categoryId, imgUrl,color,hexCode } =
+          req.body;
+        const result = await ProductColor.create(
+          {
+            name : "1234",
+            description:"1234",
+            price:123,
+            brandId:1,
+            authorId: req.user.id,
+            categoryId:1,
+            genderId:1,
+            isFeatured:false,
+            mainImg,
+            color:"blue",
+            hexCode: "#0000",
+            productId: 1,
+
+          },
+  
+          { transaction: t }
+        );
+        if (result) {
+          try {
+            await Promise.all(
+              imgUrl.map(async (el) => {
+                await Image.create(
+                  {
+                    imgUrl: el,
+                    productColorId: result.id,
+                  },
+                  { transaction: t }
+                );
+              })
+            );
+            await t.commit();
+            res.status(201).json(result);
+          } catch (error) {
+            console.log(error);
+          }
+        } else {
+          res.status(400).json({ message: "Cannot create a product" });
+        }
+      } catch (error) {
+        await t.rollback();
+        console.log(error);
+      }
     }
     static async addStocks (req,res){
       try {
