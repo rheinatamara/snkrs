@@ -8,4 +8,10 @@ router.get('/products', authorization, ProductController.findAll)
 router.get('/products/:id', authorization, ProductController.getById)
 router.get('/brands',authorization, ProductController.getBrands )
 router.get('/categories',authorization, ProductController.getBrands )
+router.post('/products',
+authorization,
+uploadFiles,
+imageKit,
+ProductController.addProducts)
+router.post('/stocks', authorization, ProductController.addStocks)
 module.exports = router;
