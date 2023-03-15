@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
       ProductColor.hasMany(models.Image, {foreignKey: "productColorId"});
       ProductColor.belongsTo(models.User, { foreignKey: "authorId" });
       ProductColor.hasMany(models.Bag, {foreignKey: "productColorId"})
-      ProductColor.hasOne(models.Size, {foreignKey:"productColorId"})
+      ProductColor.hasMany(models.Size, {foreignKey:"productColorId"})
       ProductColor.belongsTo(models.Gender, {foreignKey: "genderId"})
     }
   }

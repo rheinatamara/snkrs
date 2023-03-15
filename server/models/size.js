@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
     sizeAvailable: { 
-      type: DataTypes.ARRAY(DataTypes.INTEGER),
+      type: DataTypes.STRING,
       required: true,   
     },
     productId: DataTypes.INTEGER,

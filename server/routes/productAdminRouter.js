@@ -18,5 +18,7 @@ authorization,
 uploadFiles,
 imageKit,
 ProductController.addProductsColor)
-router.post('/stocks', authorization, ProductController.addStocks)
+router.get('/productsColor/:id', authorization, ProductController.getColorById);
+router.post('/stocks', authorization, ProductController.addStocks);
+
 module.exports = router;
