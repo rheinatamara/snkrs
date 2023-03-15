@@ -9,7 +9,10 @@ const customerAuth = async (req, res, next) => {
 
       }
     } catch (error) {
-        res.status(500).json({ message: "Internal server error" });    }
+        console.log("masuk sini")
+        // console.log(error)
+        res.status(500).json({ message: "Internal server error" });    
+    }
   };
   
   module.exports = customerAuth;

@@ -1,5 +1,5 @@
 'use strict';
-const categories = require('../../database/brand.json');
+const categories = require('../../database/category.json');
 categories.forEach(category => {
   delete category.id;
   category.createdAt = new Date()
