@@ -7,7 +7,11 @@ const imageKit = require("../middlewares/imageKit");
 router.get('/products', authorization, ProductController.findAll)
 router.get('/products/:id', authorization, ProductController.getById)
 router.get('/brands',authorization, ProductController.getBrands )
+router.get('/brands/:id',authorization, ProductController.getProductsByBrand )
 router.get('/categories',authorization, ProductController.getBrands )
+router.get('/categories/:id',authorization, ProductController.getProductsByCategory)
+router.get('/genders',authorization,ProductController.getGenders)
+router.get('/genders/:id', authorization,ProductController.getProductsByGender)
 router.post('/products',
 authorization,
 uploadFiles,
@@ -19,6 +23,7 @@ uploadFiles,
 imageKit,
 ProductController.addProductsColor)
 router.get('/productsColor/:id', authorization, ProductController.getColorById);
+
 router.post('/stocks', authorization, ProductController.addStocks);
 
 module.exports = router;

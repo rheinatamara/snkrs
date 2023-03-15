@@ -27,6 +27,7 @@ module.exports = {
         onUpdate: "cascade",
         onDelete: "cascade",
       },
+      
       productColorId: {
         type: Sequelize.INTEGER,
         references: {
@@ -35,6 +36,9 @@ module.exports = {
         },
         onUpdate: "cascade",
         onDelete: "cascade",
+      },
+      quantity: {
+        type: Sequelize.INTEGER,
       },
       createdAt: {
         allowNull: false,

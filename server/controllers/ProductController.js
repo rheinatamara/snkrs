@@ -1,6 +1,5 @@
 
 const { Product, Brand, Gender,Image,Category, Size,ProductColor, sequelize } = require("../models");
-
 class ProductController {
   // find all products
     static async findAll(req,res){
@@ -64,6 +63,25 @@ class ProductController {
           }
 
     }
+    // get products by brand 
+    static async getProductsByBrand (req,res){
+      const id = +req.params.id;
+      try {
+        const data = await Brand.findAll({
+          where: {
+            id,
+          },
+          include: [Product],
+        });
+        if (data) {
+          res.status(200).json(data);
+        } else {
+          res.send(404).json({ message: "Product not found" });
+        }
+      } catch (error) {
+        res.status(500).json({ message: "Internal server error" });
+      }
+    }
     // get Genders
     static async getGenders(req,res){
       try {
@@ -73,9 +91,9 @@ class ProductController {
         res.status(500).json({ message: "Internal server error" });
 
       }
-    }
+    }   
     // get item by gender
-    static async getProductByGender(req,res){
+    static async getProductsByGender(req,res){
       const id = +req.params.id;
       try {
         const data = await Gender.findAll({
@@ -102,6 +120,26 @@ class ProductController {
             res.status(500).json({ message: "Internal server error" });
           }
     }
+    // get products by categories
+   static async getProductsByCategory(req,res){
+    const id = +req.params.id
+    try {
+      const data = await Category.findAll({
+        where: {
+          id
+        },
+        include: [Product]
+      })
+      if(data){
+        res.status(200).json(data)
+      } else {
+        res.status(401).json({message: "Product not found!"})
+      }
+    } catch (error) {
+      res.status(500).json({ message: "Internal server error" });
+
+    }
+   }
     // add a product
     static async addProducts(req,res,){
       const t = await sequelize.transaction();

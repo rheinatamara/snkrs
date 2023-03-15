@@ -1,7 +1,8 @@
-const authorization = async (req, res, next) => {
+const customerAuth = async (req, res, next) => {
     const role = req.user.role;
+    console.log(role);
     try {
-      if (role === "admin") {
+      if (role === "customer") {
         next();
       } else {
         res.status(403).json({ message: "You dont have access" });
@@ -11,4 +12,5 @@ const authorization = async (req, res, next) => {
         res.status(500).json({ message: "Internal server error" });    }
   };
   
-  module.exports = authorization;
+  module.exports = customerAuth;
+  
