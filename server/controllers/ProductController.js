@@ -190,6 +190,117 @@ class ProductController {
       }
         
     }
+    // edit product
+    static async editProduct(req,res){
+      const t = await sequelize.transaction();
+      const id = +req.params.id;
+      try {
+        let { name, description, price, mainImg, categoryId, imgUrl,color,hexCode} = req.body;
+        mainImg = mainImg === "undefined" ? req.body.prevMainImg : mainImg;
+
+        const found = await Product.findByPk(id);
+        if (found) {
+          const result = await Product.update(
+            { name, description, price, mainImg, categoryId, imgUrl,color,hexCode },
+            {
+              where: { id },
+              returning: true,
+            }
+          );
+          if (result[0] > 0) {
+            await t.commit();
+
+            res.status(200).json(result[1][0]);
+          } else {
+            res.status(400).json({ message: "failed to update" });
+          }
+        } else {
+          res.status(404).json({ message: "Product not found" });
+        }
+      } catch (error) {
+        await t.rollback();
+        res.status(500).json({ message: "Internal server error" });
+      }
+    }
+    // delete a product
+    static async deleteProduct(req,res){
+      const id = +req.params.id;
+      try {
+        const found = await Product.findByPk(id);
+        if (found) {
+          const data = await Product.destroy({
+            where: { id },
+          });
+          if (data > 0) {
+            res.status(200).json({ message: "Product has been deleted" });
+          } else {
+            res
+              .status(401)
+              .json({ message: "We are unable to delete your data" });
+          }
+        } else {
+          res.status(404).json({ message: "Product not found!" });
+        }
+      } catch (err) {
+        res.status(500).json({ message: "Internal server error" });
+      }
+    }
+    // delete product color
+    static async deleteProductColor(req,res){
+      const id = +req.params.id;
+      try {
+        const found = await ProductColor.findByPk(id);
+        if (found) {
+          const data = await ProductColor.destroy({
+            where: { id },
+          });
+          if (data > 0) {
+            res.status(200).json({ message: "Product has been deleted" });
+          } else {
+            res
+              .status(401)
+              .json({ message: "We are unable to delete your data" });
+          }
+        } else {
+          res.status(404).json({ message: "Product not found!" });
+        }
+      } catch (err) {
+        res.status(500).json({ message: "Internal server error" });
+      }
+    }
+    
+    // edit product color
+    static async editProductColor(req,res){
+      const t = await sequelize.transaction();
+      const id = +req.params.id;
+      try {
+        let { name, description, price, mainImg, categoryId, imgUrl,color,hexCode} = req.body;
+        mainImg = mainImg === "undefined" ? req.body.prevMainImg : mainImg;
+
+        const found = await Product.findByPk(id);
+        if (found) {
+          const result = await ProductColor.update(
+            { name, description, price, mainImg, categoryId, imgUrl,color,hexCode },
+            {
+              where: { id },
+              returning: true,
+            }
+          );
+          if (result[0] > 0) {
+            await t.commit();
+
+            res.status(200).json(result[1][0]);
+          } else {
+            res.status(400).json({ message: "failed to update" });
+          }
+        } else {
+          res.status(404).json({ message: "Product not found" });
+        }
+      } catch (error) {
+        await t.rollback();
+        res.status(500).json({ message: "Internal server error" });
+      }
+    }
     // add products color
     static async addProductsColor(req,res){
       const t = await sequelize.transaction();

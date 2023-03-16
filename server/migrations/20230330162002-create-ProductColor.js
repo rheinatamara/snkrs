@@ -19,6 +19,11 @@ module.exports = {
         required: true,
         allowNull: false,
       },
+      productCode: {
+        type: Sequelize.STRING,
+        required: true,
+        allowNull: false,
+      },
       name: {
         required: true,
         allowNull: false,

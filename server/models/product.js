@@ -34,6 +34,15 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
     },
+    productCode: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: {
+          msg: "Code is required",
+        },
+      },
+    },
     hexCode: {
       type: DataTypes.STRING,
       allowNull: false,

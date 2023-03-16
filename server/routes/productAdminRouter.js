@@ -23,6 +23,22 @@ uploadFiles,
 imageKit,
 ProductController.addProductsColor)
 router.get('/productsColor/:id', authorization, ProductController.getColorById);
+router.put(
+    "/products/:id",
+    authorization,
+    uploadFiles,
+    imageKit,
+    ProductController.editProduct
+  );
+router.put(
+    "/productsColor/:id",
+    authorization,
+    uploadFiles,
+    imageKit,
+    ProductController.editProductColor
+  );
+router.delete("/products/:id", authorization, ProductController.deleteProduct);
+router.delete("/productsColor/:id", authorization, ProductController.deleteProductColor)
 
 router.post('/stocks', authorization, ProductController.addStocks);
 

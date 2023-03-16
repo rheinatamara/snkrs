@@ -19,6 +19,11 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
+      productCode: {
+        type: Sequelize.STRING,
+        required: true,
+        allowNull: false,
+      },
       hexCode: {
         type: Sequelize.STRING,
         required: true,

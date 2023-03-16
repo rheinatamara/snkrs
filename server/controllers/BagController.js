@@ -51,9 +51,9 @@ class BagController {
                 const whereClause = productColorId ? {productId} : {productColorId};
                 const destroyed = await bag.destroy({where: whereClause});
                 if(destroyed){
-                    res.status(200).json({message: "destroyed"})
+                    res.status(200).json({message: "your bag has been deleted"})
                 } else {
-                    res.status(400).json({message: "cannot be destroyed"})
+                    res.status(400).json({message: "cannot be deleted"})
                 }
                 
             } else {
