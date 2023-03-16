@@ -7,4 +7,5 @@ router.post(
     customerAuth,
     BagController.addToBag
   );
+router.delete("/customer/bag", customerAuth, BagController.deleteBag)
 module.exports = router

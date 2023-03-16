@@ -41,45 +41,30 @@ class BagController {
             res.status(500).json({ message: 'Internal server error' });
           }
     }
-    // static async addToBag(req,res){
-    //     const productId = +req.body.productId;
-    //     const productColorId = +req.body.productColorId;
-    //     const userId = +req.user.id;
-    //     try {
-    //         if(!productColorId){
-    //             const bag = await Bag.findOne({ where: { productId: productId } });
-
-    //             if (bag) {
-    //             // If a bag is found, update its quantity attribute
-    //             const updatedBag = await bag.update({ quantity: bag.quantity + 1 });
-    //             res.status(200).json(updatedBag);
-    //             } else {
-    //             // If no bag is found, create a new one with quantity 1
-    //             const newBag = await Bag.create({ productId, userId, quantity: 1 });
-    //             res.status(200).json(newBag);
-    //             }
-    
-    //         } else {
-    //             const bag = await Bag.findOne({ where: { productColorId: productColorId } });
-
-    //             if (bag) {
-    //             // If a bag is found, update its quantity attribute
-    //             const updatedBag = await bag.update({ quantity: bag.quantity + 1 });
-    //             res.status(200).json(updatedBag);
-    //             } else {
-    //             // If no bag is found, create a new one with quantity 1
-    //             const newBag = await Bag.create({ productColorId, userId, quantity: 1 });
-    //             res.status(200).json(newBag);
-    //             }
-    //         }
+    static async deleteBag(req,res){
+        
+        try {
+            const { productId, productColorId } = req.body;
+            const where = productColorId ? { productColorId } : { productId };
+            const bag = await Bag.findOne({ where });
+            if(bag){
+                const whereClause = productColorId ? {productId} : {productColorId};
+                const destroyed = await bag.destroy({where: whereClause});
+                if(destroyed){
+                    res.status(200).json({message: "destroyed"})
+                } else {
+                    res.status(400).json({message: "cannot be destroyed"})
+                }
+                
+            } else {
+                console.log("gaketemu")
+            }
             
-         
-    //     } catch (error) {
-    //         console.log(error)
-    //         res.status(500).json({ message: "Internal server error" });
-
-    //     }
-    // }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    
 }
 
 module.exports = BagController;
