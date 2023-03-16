@@ -7,6 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Bag.belongsTo(models.User, {foreignKey: "userId"});
       Bag.belongsTo(models.Product,{foreignKey: "productId"})
+      Bag.belongsTo(models.ProductColor,{foreignKey: "productColorId"})
     }
   }
   Bag.init({

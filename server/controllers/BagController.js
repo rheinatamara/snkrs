@@ -1,20 +1,20 @@
-const { Product, Brand, Gender,Image,Category, Size, Bag,User } = require("../models");
+const { Product, ProductColor, Bag,User } = require("../models");
 
 class BagController {
     static async showBag(req,res){
         try {
             const data = await Bag.findAll({
-              include: [User, Product],
+              include: [User, Product,ProductColor],
               where: {
                 userId: +req.user.id,
               },
             });
             if(data){
-                console.log("masuk ada")
+                res.status(200).json(data);
+
             } else {
-                console.log("masuk gaada")
+                res.status(404).json({message: "you dont have anything in bag yet"})
             }
-            res.status(200).json(data);
           } catch (error) {
             res.status(500).json({ message: "Internal server error" });
             console.log(error)
@@ -25,41 +25,37 @@ class BagController {
         const productId = +req.body.productId;
         const productColorId = +req.body.productColorId;
         const userId = +req.user.id;
+        console.log(`p id = ${productId}, pcId = ${productColorId}`)
 
         try {
-            // console.log(productId,userId)
             if(!productColorId){
+                const bag = await Bag.findOne({ where: { productId: productId } });
 
-                console.log(productId)
-                const data = await Bag.findOne({ where: { productId: productId} });
-                if(data){
-                    let quantity = data.quantity
-                    const result = await Bag.update(
-                        { quantity : quantity++ },
-                        {
-                          where: { productId:productId },
-                          returning: true,
-                        }
-                      );
-                        res.status(200).json(result)
+                if (bag) {
+                // If a bag is found, update its quantity attribute
+                const updatedBag = await bag.update({ quantity: bag.quantity + 1 });
+                res.status(200).json(updatedBag);
                 } else {
-                    console.log("masuk create new")
-                    const data = await Bag.create({
-                        productId, quantity:1,productColorId: null
-                    })
-                    if(data){
-                        res.status(200).json(data)
-                    }
+                // If no bag is found, create a new one with quantity 1
+                const newBag = await Bag.create({ productId, userId, quantity: 1 });
+                res.status(200).json(newBag);
                 }
+    
             } else {
-                console.log("gaada")
+                const bag = await Bag.findOne({ where: { productColorId: productColorId } });
+
+                if (bag) {
+                // If a bag is found, update its quantity attribute
+                const updatedBag = await bag.update({ quantity: bag.quantity + 1 });
+                res.status(200).json(updatedBag);
+                } else {
+                // If no bag is found, create a new one with quantity 1
+                const newBag = await Bag.create({ productColorId, userId, quantity: 1 });
+                res.status(200).json(newBag);
+                }
             }
             
-            // if (data){
-            //     console.log(data)
-            // } else {
-            //     console.log("gaada")
-            // }
+         
         } catch (error) {
             console.log(error)
         }
