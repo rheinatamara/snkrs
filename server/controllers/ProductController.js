@@ -144,21 +144,23 @@ class ProductController {
     static async addProducts(req,res,){
       const t = await sequelize.transaction();
       try {
-        const { name, description, price, mainImg, categoryId, imgUrl,color,hexCode } =
+        const { name, description, price, mainImg, categoryId, imgUrl,color,hexCode,brandId,genderId,productCode,isFeatured } =
           req.body;
         const result = await Product.create(
           {
-            name : "1234",
-            description:"1234",
-            price:123,
-            brandId:1,
+            name,
+            description,
+            price,
+            brandId,
             authorId: req.user.id,
-            categoryId:1,
-            genderId:1,
-            isFeatured:false,
+            categoryId,
+            genderId,
+            isFeatured,
             mainImg,
-            color:"blue",
-            hexCode: "#0000",
+            color,
+            hexCode,
+            productCode,
+          
           },
   
           { transaction: t }
@@ -305,23 +307,23 @@ class ProductController {
     static async addProductsColor(req,res){
       const t = await sequelize.transaction();
       try {
-        const { name, description, price, mainImg, categoryId, imgUrl,color,hexCode } =
+        const { name, description, price, mainImg, categoryId, imgUrl,color,hexCode,brandId,genderId,productCode,isFeatured, productId } =
           req.body;
         const result = await ProductColor.create(
           {
-            name : "1234",
-            description:"1234",
-            price:123,
-            brandId:1,
+            name, 
+            description, 
+            price, mainImg, 
+            categoryId, 
+            imgUrl,
+            color,
+            hexCode,
+            brandId,
+            genderId,
+            productCode,
+            isFeatured, 
+            productId,       
             authorId: req.user.id,
-            categoryId:1,
-            genderId:1,
-            isFeatured:false,
-            mainImg,
-            color:"red",
-            hexCode: "#eeee",
-            productId: 2,
-
           },
   
           { transaction: t }
