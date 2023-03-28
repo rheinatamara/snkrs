@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       ImageDetail.belongsTo(models.Product,{foreignKey: "productId"})
-      ImageDetail.belongsTo(models.ProductColor,{foreignKey: "productId"})
+      ImageDetail.belongsTo(models.ProductColor,{foreignKey: "productColorId"})
     }
   }
   ImageDetail.init({

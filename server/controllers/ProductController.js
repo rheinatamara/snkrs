@@ -1,12 +1,11 @@
 
-const { Product, Brand, Gender,Image,Category, Size,ProductColor, sequelize } = require("../models");
+const { Product, Brand, Gender,Image,Category, Size,ProductColor, ImageDetail,sequelize } = require("../models");
 class ProductController {
   // find all products
     static async findAll(req,res){
         try {
-          console.log("masuk")
             const data = await Product.findAll({
-                include: [Brand, Image,Category,Gender,ProductColor,Size],
+                include: [Brand, Image,Category,Gender,ProductColor,Size,ImageDetail],
                 order: [["id", "ASC"]],
               });
               res.status(200).json(data);
@@ -143,7 +142,6 @@ class ProductController {
     // add a product
     static async addProducts(req,res,){
       console.log("masuk sini")
-      const t = await sequelize.transaction();
 
       try {
         const { name, description, price, mainImg, categoryId, imgUrl,color,hexCode,brandId,genderId,productCode,isFeatured,imgDetails } =
@@ -163,39 +161,29 @@ class ProductController {
             hexCode,
             productCode,
           
-          },
-          { transaction: t }
-
+          }
   
         );
         if (result) {
-          console.log(result)
           try {
             await Promise.all(
-              imgDetails.map(async (el) => {
+              imgUrl.map(async (el) => {
                 await Image.create(
+                  {
+                    imgUrl: el,
+                    productId: result.id,
+                  },
+                );
+              }),
+              imgDetails.map(async (el) => {
+                await ImageDetail.create(
                   {
                     imgDetails: el,
                     productId: result.id,
                   },
-                  { transaction: t }
                 );
-              }),
-              // imgDetails.map(async (el) => {
-              //   await Image.create(
-              //     {
-              //       imgUrl: el,
-              //       productId: result.id,
-              //     },
-              //     { transaction: t }
-              //   );
-              // }),
-             
+              }),           
             )
-      
-
-           
-            await t.commit();
             res.status(201).json(result);
           } catch (error) {
             console.log(error);
@@ -205,9 +193,10 @@ class ProductController {
         }
       } catch (error) {
         await t.rollback();
-        console.log(error);
-      }
-        
+        res.status(500).json({ message: "Internal server error" });
+
+
+      } 
     }
     // edit product
     static async editProduct(req,res){
@@ -394,8 +383,7 @@ class ProductController {
 
         }
       } catch (error) {
-        console.log(error)
-        // res.status(500).json({ message: "Internal server error" });
+        res.status(500).json({ message: "Internal server error" });
 
       }
     }

@@ -1,5 +1,4 @@
 const { Product, ProductColor, Bag,User } = require("../models");
-
 class BagController {
     static async showBag(req,res){
         try {
@@ -18,7 +17,6 @@ class BagController {
           } catch (error) {
             res.status(500).json({ message: "Internal server error" });
             console.log(error)
-
           }
     }
     static async addToBag(req,res){
@@ -41,9 +39,7 @@ class BagController {
             res.status(500).json({ message: 'Internal server error' });
           }
     }
-  
     static async deleteBag(req,res){
-        
         try {
             const { productId, productColorId } = req.body;
             const where = productColorId ? { productColorId } : { productId };
