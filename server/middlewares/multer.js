@@ -10,6 +10,10 @@ const uploadFiles = upload.fields([
     name: "imgUrl",
     maxCount: 40,
   },
+  {
+    name: "imgDetails",
+    maxCount: 10,
+  },
 ]);
 
 module.exports = uploadFiles;

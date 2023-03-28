@@ -1,6 +1,5 @@
 const customerAuth = async (req, res, next) => {
     const role = req.user.role;
-    console.log(role);
     try {
       if (role === "customer") {
         next();
@@ -10,7 +9,7 @@ const customerAuth = async (req, res, next) => {
       }
     } catch (error) {
         console.log("masuk sini")
-        // console.log(error)
+        console.log(error)
         res.status(500).json({ message: "Internal server error" });    
     }
   };

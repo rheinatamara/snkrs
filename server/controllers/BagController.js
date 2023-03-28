@@ -22,17 +22,17 @@ class BagController {
           }
     }
     static async addToBag(req,res){
-        try {
-            const { productId, productColorId } = req.body;
+            const { productId, productColorId,size } = req.body;
             const userId = req.user.id;
-            const where = productColorId ? { productColorId } : { productId };
+            const where = productColorId ? { productColorId,size } : { productId,size };
             const bag = await Bag.findOne({ where });
+          try {
         
             if (bag) {
               const updatedBag = await bag.update({ quantity: bag.quantity + 1 });
               res.json(updatedBag);
             } else {
-              const data = productColorId ? { productColorId, userId } : { productId, userId };
+              const data = productColorId ? { productColorId, userId,size } : { productId, userId,size };
               const newBag = await Bag.create({ ...data, quantity: 1 });
               res.json(newBag);
             }
@@ -41,6 +41,7 @@ class BagController {
             res.status(500).json({ message: 'Internal server error' });
           }
     }
+  
     static async deleteBag(req,res){
         
         try {
@@ -57,12 +58,41 @@ class BagController {
                 }
                 
             } else {
-                console.log("gaketemu")
+                res.status(404).json({message: "No Bag found"})
             }
             
         } catch (error) {
-            console.log(error)
+            res.status(500).json({message: "Internal server error"})
         }
+    }
+    static async editBag(req,res){
+      try {
+        const { productId, productColorId,size,quantity } = req.body;
+        const where = productColorId ? { productColorId,size } : { productId,size };
+        const bag = await Bag.findOne({ where });
+        if(bag){
+          const result = await Bag.update(
+            { size,quantity },
+            {
+              where: where,
+              returning: true,
+            }
+          );
+          if (result[0] > 0) {
+            res.status(200).json(result[1][0]);
+          } else {
+            res.status(400).json({ message: "failed to update" });
+          }
+        } else {
+          res.status(404).json({ message: "Bag not found" });
+        }
+
+      } catch (error) {
+        res.status(500).json({ message: "Internal server error" });
+        console.log(error)
+
+        
+      }
     }
     
 }

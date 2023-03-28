@@ -13,6 +13,8 @@ module.exports = (sequelize, DataTypes) => {
       Product.hasMany(models.Size, {foreignKey:"productId"})
       Product.belongsTo(models.Gender, {foreignKey: "genderId"})
       Product.hasMany(models.ProductColor, {foreignKey: "productId"})
+      Product.hasMany(models.ImageDetail, {foreignKey: "productId"});
+
     }
   }
   Product.init({

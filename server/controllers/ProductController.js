@@ -142,9 +142,11 @@ class ProductController {
    }
     // add a product
     static async addProducts(req,res,){
+      console.log("masuk sini")
       const t = await sequelize.transaction();
+
       try {
-        const { name, description, price, mainImg, categoryId, imgUrl,color,hexCode,brandId,genderId,productCode,isFeatured } =
+        const { name, description, price, mainImg, categoryId, imgUrl,color,hexCode,brandId,genderId,productCode,isFeatured,imgDetails } =
           req.body;
         const result = await Product.create(
           {
@@ -162,22 +164,37 @@ class ProductController {
             productCode,
           
           },
-  
           { transaction: t }
+
+  
         );
         if (result) {
+          console.log(result)
           try {
             await Promise.all(
-              imgUrl.map(async (el) => {
+              imgDetails.map(async (el) => {
                 await Image.create(
                   {
-                    imgUrl: el,
+                    imgDetails: el,
                     productId: result.id,
                   },
                   { transaction: t }
                 );
-              })
-            );
+              }),
+              // imgDetails.map(async (el) => {
+              //   await Image.create(
+              //     {
+              //       imgUrl: el,
+              //       productId: result.id,
+              //     },
+              //     { transaction: t }
+              //   );
+              // }),
+             
+            )
+      
+
+           
             await t.commit();
             res.status(201).json(result);
           } catch (error) {

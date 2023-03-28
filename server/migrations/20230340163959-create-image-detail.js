@@ -2,21 +2,12 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Bags', {
+    await queryInterface.createTable('ImageDetails', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
-      },
-      userId: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: "Users",
-          key: "id",
-        },
-        onUpdate: "cascade",
-        onDelete: "cascade",
       },
       productId: {
         type: Sequelize.INTEGER,
@@ -27,7 +18,6 @@ module.exports = {
         onUpdate: "cascade",
         onDelete: "cascade",
       },
-      
       productColorId: {
         type: Sequelize.INTEGER,
         references: {
@@ -37,13 +27,8 @@ module.exports = {
         onUpdate: "cascade",
         onDelete: "cascade",
       },
-      quantity: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-      },
-      size: {
-        allowNull: false,
-        type: Sequelize.STRING,
+      imgDetails: {
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
@@ -56,6 +41,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Bags');
+    await queryInterface.dropTable('ImageDetails');
   }
 };
