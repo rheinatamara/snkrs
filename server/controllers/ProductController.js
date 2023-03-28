@@ -141,8 +141,6 @@ class ProductController {
    }
     // add a product
     static async addProducts(req,res,){
-      console.log("masuk sini")
-
       try {
         const { name, description, price, mainImg, categoryId, imgUrl,color,hexCode,brandId,genderId,productCode,isFeatured,imgDetails } =
           req.body;
@@ -200,24 +198,21 @@ class ProductController {
     }
     // edit product
     static async editProduct(req,res){
-      const t = await sequelize.transaction();
       const id = +req.params.id;
       try {
-        let { name, description, price, mainImg, categoryId, imgUrl,color,hexCode} = req.body;
+        let { name, description, price, mainImg, categoryId,color,hexCode} = req.body;
         mainImg = mainImg === "undefined" ? req.body.prevMainImg : mainImg;
 
         const found = await Product.findByPk(id);
         if (found) {
           const result = await Product.update(
-            { name, description, price, mainImg, categoryId, imgUrl,color,hexCode },
+            { name, description, price, mainImg, categoryId,color,hexCode },
             {
               where: { id },
               returning: true,
             }
           );
           if (result[0] > 0) {
-            await t.commit();
-
             res.status(200).json(result[1][0]);
           } else {
             res.status(400).json({ message: "failed to update" });
@@ -226,7 +221,6 @@ class ProductController {
           res.status(404).json({ message: "Product not found" });
         }
       } catch (error) {
-        await t.rollback();
         res.status(500).json({ message: "Internal server error" });
       }
     }
@@ -279,24 +273,20 @@ class ProductController {
     
     // edit product color
     static async editProductColor(req,res){
-      const t = await sequelize.transaction();
       const id = +req.params.id;
       try {
-        let { name, description, price, mainImg, categoryId, imgUrl,color,hexCode} = req.body;
+        let { name, description, price, mainImg, categoryId,color,hexCode} = req.body;
         mainImg = mainImg === "undefined" ? req.body.prevMainImg : mainImg;
-
-        const found = await Product.findByPk(id);
+        const found = await ProductColor.findByPk(id);
         if (found) {
           const result = await ProductColor.update(
-            { name, description, price, mainImg, categoryId, imgUrl,color,hexCode },
+            { name, description, price, mainImg, categoryId,color,hexCode },
             {
               where: { id },
               returning: true,
             }
           );
           if (result[0] > 0) {
-            await t.commit();
-
             res.status(200).json(result[1][0]);
           } else {
             res.status(400).json({ message: "failed to update" });
@@ -311,10 +301,10 @@ class ProductController {
     }
     // add products color
     static async addProductsColor(req,res){
-      const t = await sequelize.transaction();
+
       try {
-        const { name, description, price, mainImg, categoryId, imgUrl,color,hexCode,brandId,genderId,productCode,isFeatured, productId } =
-          req.body;
+        const { name, description, price, mainImg, categoryId, imgUrl,color,hexCode,brandId,genderId,productCode,isFeatured, productId,imgDetails } =
+        req.body;
         const result = await ProductColor.create(
           {
             name, 
@@ -330,9 +320,8 @@ class ProductController {
             isFeatured, 
             productId,       
             authorId: req.user.id,
-          },
+          }
   
-          { transaction: t }
         );
         if (result) {
           try {
@@ -341,24 +330,30 @@ class ProductController {
                 await Image.create(
                   {
                     imgUrl: el,
-                    productColorId: result.id,
-                  },
-                  { transaction: t }
+                    productColorId: result.id,                  },
                 );
-              })
-            );
-            await t.commit();
+              }),
+              imgDetails.map(async (el) => {
+                await ImageDetail.create(
+                  {
+                    imgDetails: el,
+                    productColorId: result.id,                  },
+                );
+              }),           
+            )
             res.status(201).json(result);
           } catch (error) {
-            console.log(error);
+            res.status(500).json({ message: "Internal server error" });
           }
         } else {
           res.status(400).json({ message: "Cannot create a product" });
         }
       } catch (error) {
         await t.rollback();
-        console.log(error);
-      }
+        res.status(500).json({ message: "Internal server error" });
+
+
+      } 
     }
     // add stocks
     static async addStocks (req,res){
