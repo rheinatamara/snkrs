@@ -1,0 +1,42 @@
+#navbar .navbar-wrapper {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: space-between;
+}
+#navbar .navbar-wrapper .logo p {
+  font-size: 1.3rem;
+}
+#navbar .navbar-wrapper p {
+  cursor: pointer;
+}
+#navbar .navbar-wrapper .mid-navbar {
+  padding-left: 1.5rem;
+}
+#navbar .navbar-wrapper .mid-navbar li {
+  padding: 0 3rem;
+}
+#navbar .navbar-wrapper .last-navbar li {
+  padding-left: 1.5rem;
+}
+#navbar .navbar-wrapper ul {
+  display: flex;
+}
+#navbar .navbar-wrapper ul li p {
+  border-bottom: 2px transparent solid;
+  padding-bottom: 0.5rem;
+  transition: border-color 0.5s;
+}
+#navbar .navbar-wrapper ul li p:hover {
+  border-color: #ccc;
+}
+#navbar .navbar-wrapper ul li img {
+  cursor: pointer;
+}
+#navbar .navbar-wrapper ul .switch img {
+  width: 2.8rem;
+  padding-top: 0.2rem;
+}
+#navbar .navbar-wrapper ul .account img {
+  padding-top: 0.1rem;
+}/*# sourceMappingURL=navbar.css.map */

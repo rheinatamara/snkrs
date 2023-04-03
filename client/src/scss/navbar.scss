@@ -1,0 +1,54 @@
+@import "utilities";
+#navbar {
+  .navbar-wrapper {
+    .logo {
+      p {
+        font-size: 1.3rem;
+      }
+    }
+    p {
+        cursor: pointer;
+    }
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: space-between;
+    .mid-navbar {
+      padding-left: 1.5rem;
+      li {
+        padding: 0 3rem;
+      }
+    }
+    .last-navbar {
+      li {
+        padding-left: 1.5rem;
+      }
+    }
+    ul {
+      display: flex;
+      li {
+        p {
+          
+          border-bottom: 2px transparent solid;
+          padding-bottom: 0.5rem;
+          transition: border-color 0.5s;
+          &:hover {
+            border-color: $medium-color;
+         }
+        }
+        img {
+            cursor: pointer;
+        }
+       
+      }
+      .switch img {
+        width: 2.8rem;
+        padding-top: 0.2rem;
+        
+        }
+        .account  img {
+            padding-top: 0.1rem;
+        }
+    }
+  }
+}
