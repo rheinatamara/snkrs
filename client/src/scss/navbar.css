@@ -1,3 +1,11 @@
+.plus-jakarta-font {
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+.font-m {
+  font-size: 20px;
+}
+
 #navbar .navbar-wrapper {
   display: flex;
   text-align: center;

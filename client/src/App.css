@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans&family=Public+Sans&family=Unbounded&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&family=Public+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -8,7 +8,7 @@
 body {
   font-family: "Public Sans", sans-serif;
   line-height: 1.6;
-  width: 1600px;
+  max-width: 1700px;
   margin: 0 auto;
   padding-top: 1.5rem;
 }

@@ -1,0 +1,67 @@
+.plus-jakarta-font {
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+.font-m {
+  font-size: 20px;
+}
+
+header {
+  margin-top: 4rem;
+}
+header .header-wrapper {
+  display: flex;
+  position: relative;
+}
+header .header-wrapper .description-box {
+  width: 45rem;
+  height: 75vh;
+  padding-top: -30rem;
+}
+header .header-wrapper .description-box .wrapper {
+  width: 70%;
+  margin: 0 auto;
+  margin-top: 20%;
+}
+header .header-wrapper .description-box .description {
+  padding: 1rem 0;
+}
+header .header-wrapper .description-box .title {
+  font-size: 56px;
+}
+header .header-wrapper .description-box .button-price {
+  display: flex;
+  padding-top: 1rem;
+}
+header .header-wrapper .description-box .button-price .button p {
+  border: 1px solid #000;
+  border-radius: 21px;
+  display: flex;
+  cursor: pointer;
+  padding: 0.5rem 0.8rem;
+  align-items: center;
+}
+header .header-wrapper .description-box .button-price .button p img {
+  padding-left: 0.7rem;
+}
+header .header-wrapper .description-box .button-price .price p {
+  font-size: 28px;
+  font-weight: 600;
+  padding-left: 1.5rem;
+}
+header .header-wrapper .image-box h1 {
+  position: absolute;
+  font-size: 300px;
+  -webkit-text-stroke: 2px rgba(0, 0, 0, 0.171); /* width and color */
+  color: transparent;
+  top: 5rem;
+  right: 7rem;
+  z-index: -1;
+}
+header .header-wrapper .image-box img {
+  position: absolute;
+  z-index: 2 !important;
+  width: 60rem;
+  top: -5rem;
+  right: 1rem;
+}/*# sourceMappingURL=home.css.map */

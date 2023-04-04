@@ -1,0 +1,81 @@
+@import "utilities";
+header {
+    // background-color: teal;
+    margin-top: 4rem;
+    .header-wrapper {
+        display: flex;
+        // .bar {
+        //     border-left: 4px solid #333;
+        //     margin: 6rem 0;
+        // }
+         position: relative;
+        .description-box {
+            // background-color: brown;
+            width: 45rem;
+            // display: flex;
+            // flex-direction: column;
+            // justify-content: center;
+            // align-items: center;
+            height: 75vh;
+            padding-top: -30rem;
+            .wrapper {
+                // background-color: salmon;
+               width: 70%;
+               margin: 0 auto;
+               margin-top: 20%;
+
+            }
+            
+            .description {
+                padding: 1rem 0;
+            }
+            .title {
+                font-size: 56px;
+              }
+              .button-price {
+                display: flex;
+                padding-top: 1rem;
+                .button p{
+                    border: 1px solid #000;
+                    border-radius: 21px;
+                    display: flex;
+                    cursor: pointer;
+                    padding: 0.5rem 0.8rem;
+                    
+                    align-items: center;
+                    img {
+                        padding-left: 0.7rem;
+                        // top: 1rem;
+                    }
+                }
+                .price p {
+                    font-size: 28px;
+                    font-weight: 600;
+                    padding-left: 1.5rem;
+                }
+              }
+        }
+        .image-box {
+           
+            // max-width: 100%;             
+            h1 {
+                position: absolute;
+                font-size: 300px;
+                -webkit-text-stroke: 2px rgba(0, 0, 0, 0.171); /* width and color */
+                color: transparent;
+                top: 5rem;
+                right: 7rem;
+                z-index: -1;
+            }
+            img {
+                position: absolute;
+                z-index: 2 !important;
+                width: 60rem;
+                // padding-left: -12rem;
+                top: -5rem;
+                right: 1rem;
+            }
+        }
+     
+    }
+}
