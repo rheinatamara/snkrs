@@ -1,26 +1,39 @@
 @import "utilities";
+
 header {
     // background-color: teal;
+    height:80vh;
+    // overflow-y: hidden;
+
+    overflow-y: scroll;
+    transform: scaleX(-1); //Reflects the parent horizontally
+    padding-top: 3rem;
+   
     margin-top: 4rem;
     .header-wrapper {
+        transform: scaleX(-1); //Flips the child back to normal
+
         display: flex;
         // .bar {
         //     border-left: 4px solid #333;
-        //     margin: 6rem 0;
+        //     margin: 12rem 0;
+        //     margin-right: 6rem;
+        //     margin-left: 3rem;
         // }
+        
          position: relative;
         .description-box {
             // background-color: brown;
-            width: 45rem;
+            width: 40rem;
             // display: flex;
             // flex-direction: column;
             // justify-content: center;
             // align-items: center;
             height: 75vh;
-            padding-top: -30rem;
+            // padding-left: 3rem;
             .wrapper {
                 // background-color: salmon;
-               width: 70%;
+               width: 80%;
                margin: 0 auto;
                margin-top: 20%;
 
@@ -63,7 +76,7 @@ header {
                 font-size: 300px;
                 -webkit-text-stroke: 2px rgba(0, 0, 0, 0.171); /* width and color */
                 color: transparent;
-                top: 5rem;
+                top: 7rem;
                 right: 7rem;
                 z-index: -1;
             }
@@ -72,7 +85,7 @@ header {
                 z-index: 2 !important;
                 width: 60rem;
                 // padding-left: -12rem;
-                top: -5rem;
+                top: -6rem;
                 right: 1rem;
             }
         }
