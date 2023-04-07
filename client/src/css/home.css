@@ -11,7 +11,7 @@ header {
   overflow-y: scroll;
   transform: scaleX(-1);
   padding-top: 3rem;
-  margin-top: 4rem;
+  margin-top: 1rem;
 }
 header .header-wrapper {
   transform: scaleX(-1);
@@ -25,7 +25,8 @@ header .header-wrapper .description-box {
 header .header-wrapper .description-box .wrapper {
   width: 80%;
   margin: 0 auto;
-  margin-top: 20%;
+  margin-top: 15%;
+  margin-left: 8rem;
 }
 header .header-wrapper .description-box .description {
   padding: 1rem 0;
@@ -58,14 +59,14 @@ header .header-wrapper .image-box h1 {
   font-size: 300px;
   -webkit-text-stroke: 2px rgba(0, 0, 0, 0.171); /* width and color */
   color: transparent;
-  top: 7rem;
-  right: 7rem;
+  top: 3rem;
+  right: -0.2rem;
   z-index: -1;
 }
 header .header-wrapper .image-box img {
   position: absolute;
   z-index: 2 !important;
-  width: 60rem;
-  top: -6rem;
-  right: 1rem;
+  width: 55rem;
+  top: -7rem;
+  right: -5rem;
 }/*# sourceMappingURL=home.css.map */
