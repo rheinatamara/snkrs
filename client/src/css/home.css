@@ -6,15 +6,68 @@
   font-size: 20px;
 }
 
+.homepage {
+  margin-top: 1rem;
+}
+
+div.gradient1 {
+  width: 45rem;
+  height: 45rem;
+  position: absolute;
+  z-index: -22;
+  top: -10rem;
+  left: -25rem;
+  background-image: radial-gradient(rgba(46, 49, 146, 0.4941176471) -25%, rgba(27, 255, 255, 0.1843137255) 34%, transparent 60%);
+}
+
+div.gradient2 {
+  width: 45rem;
+  height: 45rem;
+  position: absolute;
+  z-index: -22;
+  top: 19rem;
+  right: -25rem;
+  background-image: radial-gradient(rgba(46, 49, 146, 0.4941176471) -25%, rgba(27, 255, 255, 0.1843137255) 34%, transparent 60%);
+}
+
+.numbers {
+  position: absolute;
+  top: 21rem;
+  z-index: 999;
+  left: 14.5%;
+}
+.numbers ul li {
+  padding: 1rem 0;
+  font-size: 27px;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  color: #BCBCBC;
+}
+.numbers ul .one {
+  color: #000;
+}
+.numbers ul .two {
+  font-size: 20px;
+  padding-left: 0.2rem;
+  padding-top: 2.5rem;
+}
+.numbers ul .three {
+  font-size: 1rem;
+  padding-left: 0.4rem;
+  padding-top: 2.5rem;
+}
+
 header {
   height: 80vh;
   overflow-y: scroll;
   transform: scaleX(-1);
-  padding-top: 3rem;
+  padding-top: 5rem;
   margin-top: 1rem;
 }
-header .header-wrapper {
+header .header {
+  height: 20rem;
   transform: scaleX(-1);
+}
+header .header-wrapper {
   display: flex;
   position: relative;
 }
@@ -26,7 +79,7 @@ header .header-wrapper .description-box .wrapper {
   width: 80%;
   margin: 0 auto;
   margin-top: 15%;
-  margin-left: 8rem;
+  margin-left: 8.3rem;
 }
 header .header-wrapper .description-box .description {
   padding: 1rem 0;
@@ -69,4 +122,20 @@ header .header-wrapper .image-box img {
   width: 55rem;
   top: -7rem;
   right: -5rem;
+}
+
+header::-webkit-scrollbar {
+  width: 4px;
+}
+
+/* Track */
+header::-webkit-scrollbar-track {
+  background-color: #BCBCBC;
+  margin-top: 15rem;
+  margin-bottom: 13rem;
+}
+
+/* Handle */
+header::-webkit-scrollbar-thumb {
+  background: #000;
 }/*# sourceMappingURL=home.css.map */
