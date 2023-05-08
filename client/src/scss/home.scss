@@ -1,4 +1,6 @@
 @import "utilities";
+
+
 .homepage {
     margin-top: 1rem;
 }
@@ -17,6 +19,7 @@ div.gradient1 {
   
     
 }
+
 div.gradient2 {
     width: 45rem;
     height: 45rem;
@@ -32,21 +35,8 @@ div.gradient2 {
   
     
 }
-// div.gradient3 {
-//     width: 45rem;
-//     height: 45rem;
-
-//     position: absolute;
-//     z-index: -22;
-//     top: -10rem;
-//     left: -25rem;
-//     background-image: radial-gradient(#2e31927e -25%,#1bffff46 34%, transparent 60%);
 
 
-    
-  
-    
-// }
 .numbers {
     position: absolute ;
     top: 21rem;
@@ -81,7 +71,6 @@ header {
     overflow-y: scroll;
     transform: scaleX(-1); //Reflects the parent horizontally
     padding-top: 5rem;
-   
     margin-top: 1rem;
   
     .header {
