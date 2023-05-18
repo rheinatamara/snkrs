@@ -61,17 +61,33 @@ div.gradient2 {
         .three {
             font-size: 1rem;
             padding-left: 0.4rem;
-            padding-top: 2.5rem;
+            padding-top: 2.1rem;
         }
     }
 }
+header::-webkit-scrollbar {
+    width: 4px;
+  }
+  
+  /* Track */
+header::-webkit-scrollbar-track {
+    background-color: #BCBCBC;
+    margin-top: 16rem;
+    margin-bottom: 13rem;
+  }
+   
+  /* Handle */
+header::-webkit-scrollbar-thumb {
+    background: #000; 
+
+  }
 header {
     
     height:80vh;
     overflow-y: scroll;
     transform: scaleX(-1); //Reflects the parent horizontally
-    padding-top: 5rem;
-    margin-top: 1rem;
+    padding-top: 6rem;
+  margin-bottom: 5rem;
   
     .header {
         height: 20rem;
@@ -79,8 +95,6 @@ header {
        
     }
     .header-wrapper {
-       
-        
         display: flex;
          position: relative;
         .description-box {
@@ -89,7 +103,7 @@ header {
             .wrapper {
                width: 80%;
                margin: 0 auto;
-               margin-top: 15%;
+               margin-top: 4.2rem;
                margin-left: 8.3rem;
 
             }
@@ -122,7 +136,7 @@ header {
                     padding-left: 1.5rem;
                 }
               }
-        }
+        } 
         .image-box {      
             h1 {
                 position: absolute;
@@ -144,20 +158,119 @@ header {
      
     }
 }
-header::-webkit-scrollbar {
-    width: 4px;
-  }
-  
-  /* Track */
-header::-webkit-scrollbar-track {
-    background-color: #BCBCBC;
-    margin-top: 15rem;
-    margin-bottom: 13rem;
-  }
-   
-  /* Handle */
-header::-webkit-scrollbar-thumb {
-    background: #000; 
 
-  }
   
+section {
+    margin: 3rem 2rem;
+    h1 {
+        margin-bottom: 2.5rem;
+    }
+   
+    .product{
+      
+        &-grid {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+
+        }
+        &-outer {
+            border: 1px solid #ccc;
+            border-radius: 43px;
+            width: 271px;
+            height: 304px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 15px;
+            .bottom-text {
+                width: 100%;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                padding: 0 1rem;
+            }
+            .product {
+                position: absolute;
+            
+                top: -0.9rem;
+                img {
+                    width: 235px;
+                    // height: 104px;
+                    transform: rotate(10deg);
+                }
+                p {
+                    position: absolute;
+                    // background-color: red;
+                    width: 100%;
+                    text-align: center;
+                    margin-top: -2rem;
+                }
+                
+
+            }
+
+        }
+        &-inner {
+            width: 234px;
+            height: 214px;
+            position: relative;
+            top: -1rem;
+            background-image: linear-gradient(to right, rgba(46, 49, 146, 0.25) , rgba(27, 255, 255, 0.25));
+            border-radius: 37px;
+            .upper-section {
+                .color {
+                  width: 18px;
+                    height: 18px;
+                    background-color: #000;
+                    border-radius: 50%;
+                    position: absolute;
+                    top: 1rem;
+                    left: 1rem;
+                }
+            }
+        }
+    }
+    
+    &#content {
+        margin-top: 125px;
+        .content {
+            &-1 {
+                position: relative;
+                .product {
+                    border-radius: 58px;
+                    width: 318px;
+                    background-image: linear-gradient(to right, rgba(46, 49, 146, 0.6) , rgba(27, 255, 255, 0.6));
+                    &-content {
+                        position: absolute;
+                        left: 15%;
+                        top: -5%;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                        // text-align: center;
+                        padding: 1.2rem;
+                        
+                        h3 {
+                            font-weight: 600;
+                            // padding-right: 3rem;
+                        }
+                    
+                       width: 178px;
+                       height: 118px;
+                        background: linear-gradient(to left, rgba(0,0,0, 0.2) , rgba(255, 255, 255, 0.2));
+                        border-radius: 31px;
+                        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+                        backdrop-filter: blur(6.6px);
+                        -webkit-backdrop-filter: blur(6.6px);
+                    }
+                }
+               
+                
+            }
+            
+        }
+    }
+}
